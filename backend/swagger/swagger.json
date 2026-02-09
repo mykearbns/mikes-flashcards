@@ -1,0 +1,30 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "Mikes Flashcards API",
+        "description": "Personal deck of flashcards web application API",
+        "version": "1.0.0"
+    },
+    "host": "localhost:3000",
+    "basePath": "/",
+    "schemes": [
+        "http"
+    ],
+    "paths": {
+        "api/data": {
+            "get": {
+                "summary": "Returns list of all data requested from 3rd party APIs.",
+                "description": "Returns list of all data requested from 3rd party APIs.",
+                "produces": "application/json",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object"
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Decks</title>
+</head>
+<body>
+    <h1>View Decks</h1>
+    <p>This page will display all the flashcard decks.</p>
+    <button id="loadDecksBtn" onclick="fetchDecks()">Load Decks</button>
+    <div class="flash-deck-container">
+        <!-- Decks will be dynamically inserted here -->
+        
+    </div>
+
+
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2024 Mike's Flashcards. All rights reserved.</p>
+        </div>
+    </footer>   
+
+    <script>
+        // Example JavaScript to fetch and display decks
+        document.addEventListener('DOMContentLoaded', () => {
+
+            const fetchDecksBtn = document.getElementById('loadDecksBtn');
+
+
+            const fetchDecks = () => {
+                fetch('/decks')
+                    .then(response => response.json())
+                    .then(decks => {
+                        const container = document.querySelector('.flash-deck-container');
+                        decks.forEach(deck => {
+                            const deckElement = document.createElement('div');
+                            deckElement.classList.add('flash-deck');
+                            deckElement.innerHTML = `<h2>${deck.name}</h2><p>${deck.description}</p>`;
+                            container.appendChild(deckElement);
+                        });
+                    })
+                    .catch(error => console.error('Error fetching decks:', error));
+                };
+
+            fetchDecksBtn.addEventListener('click', fetchDecks);
+        });
+
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %></title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+</head>
+<body>
+    <%- include('navbar') %>
+    
+    <div class="container mt-5">
+        <h1>Your Flash Decks</h1>
+        
+        <div class="row mt-4">
+            <% if (decks && decks.length > 0) { %>
+                <% decks.forEach(deck => { %>
+                    <div class="col-md-4 mb-4">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title"><%= deck.name %></h5>
+                                <p class="card-text"><%= deck.description || 'No description available' %></p>
+                                <a href="/decks/<%= deck.id %>/cards" class="btn btn-primary">View Cards</a>
+                            </div>
+                        </div>
+                    </div>
+                <% }); %>
+            <% } else { %>
+                <div class="col-12">
+                    <p class="text-muted">No decks available yet. Create your first deck!</p>
+                </div>
+            <% } %>
+        </div>
+    </div>
+    
+    <%- include('footer') %>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+</body>
+</html>
